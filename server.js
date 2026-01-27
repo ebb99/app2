@@ -237,7 +237,7 @@ app.delete("/api/zeiten/:id", requireAdmin, async (req, res) => {
 app.get("/api/vereine", requireLogin, async (req, res) => {
     try {
         const result = await pool.query(
-            "SELECT id, vereinsname FROM vereine ORDER BY vereinsname"
+            "SELECT id, vereinsname, url FROM vereine ORDER BY vereinsname"
         );
         res.json(result.rows);
     } catch (err) {
@@ -247,12 +247,12 @@ app.get("/api/vereine", requireLogin, async (req, res) => {
 });
 
 app.post("/api/vereine", requireAdmin, async (req, res) => {
-    const { vereinsname } = req.body;
+    const { vereinsname, url } = req.body;
 
     try {
         const result = await pool.query(
-            "INSERT INTO vereine (vereinsname) VALUES ($1) RETURNING *",
-            [vereinsname]
+            "INSERT INTO vereine (vereinsname, url) VALUES ($1, $2) RETURNING *",
+            [vereinsname, url]
         );
         res.json(result.rows[0]);
     } catch (err) {
@@ -281,11 +281,15 @@ app.get("/api/spiele", requireLogin, async (req, res) => {
         const userId = req.session.user.id;
 
         const result = await pool.query(`
-            SELECT
+      SELECT
                 s.id,
                 s.anstoss,
                 s.heimverein,
                 s.gastverein,
+                s.heimbild,
+                s.gastbild,
+                s.heimtore,
+                s.gasttore,
                 s.statuswort,
                 t.heimtipp,
                 t.gasttipp
@@ -295,7 +299,6 @@ app.get("/api/spiele", requireLogin, async (req, res) => {
              AND t.user_id = $1
             ORDER BY s.anstoss
         `, [userId]);
-
         res.json(result.rows);
 
     } catch (err) {
@@ -306,14 +309,35 @@ app.get("/api/spiele", requireLogin, async (req, res) => {
 
 
 app.post("/api/spiele", requireAdmin, async (req, res) => {
-    const { anstoss, heimverein, gastverein, heimtore, gasttore, statuswort } = req.body;
+    // const { anstoss, heimverein, gastverein, heimtore, gasttore, statuswort } = req.body;
+    const {
+        anstoss,
+        heimverein,
+        gastverein,
+        heimbild,
+        gastbild,
+        heimtore,
+        gasttore,
+        statuswort
+    } = req.body;
 
     try {
         const result = await pool.query(
             `INSERT INTO spiele
-             (anstoss, heimverein, gastverein, heimtore, gasttore, statuswort)
-             VALUES ($1,$2,$3,$4,$5,$6) RETURNING *`,
-            [anstoss, heimverein, gastverein, heimtore, gasttore, statuswort]
+             (anstoss, heimverein, gastverein, heimbild, gastbild, heimtore, gasttore, statuswort)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`,
+            [
+                anstoss,
+                heimverein,
+                gastverein,
+                heimbild,
+                gastbild,
+                heimtore,
+                gasttore,
+                statuswort
+            ]
+           
+             // [anstoss, heimverein, gastverein, heimtore, gasttore, statuswort]
         );
         res.json(result.rows[0]);
     } catch {

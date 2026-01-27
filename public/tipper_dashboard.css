@@ -70,20 +70,14 @@
             color: #666;
             margin-bottom: 8px;
         }
-/* alt
-        .tipp {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 6px ;
-         
-            border-bottom: 1px solid #eee;
-        }
+.team-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
 
-        .tipp:last-child {
-            border-bottom: none;
-        }
-
-        */
 .tipp {
   display: flex;
   gap: 20px; /* Abstand zwischen den Spalten */

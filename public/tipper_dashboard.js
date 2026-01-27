@@ -128,17 +128,12 @@ const options = {
   minute: '2-digit'  // "00"
 };
 
-
-
-
-
-
     geplant.forEach(s => {
         // Zeile 1: Datum + Status
         const tr1 = document.createElement("tr");
 
  const textd = new Date(s.anstoss).toLocaleString("de-DE", options) + " Uhr";
-console.log(textd); // Ausgabe z.B.: "Samstag, 17.01.2026, 18:00 Uhr"
+// console.log(textd); // Ausgabe z.B.: "Samstag, 17.01.2026, 18:00 Uhr"
     
 
   
@@ -151,10 +146,27 @@ console.log(textd); // Ausgabe z.B.: "Samstag, 17.01.2026, 18:00 Uhr"
 
       // Zeile 2: Heimverein + Tipp
         const tr2 = document.createElement("tr");
-        const logoh = s.heimverein+"_logo.png"
+        const logoh = s.heimverein + "_logo.png";
+
+let heimLogoHtml;
+if (s.heimbild) {
+    heimLogoHtml = `<img src="${s.heimbild}" alt="${s.heimverein}" class="team-logo">`;
+} else {
+    heimLogoHtml = `<img src="/bilder/${logoh}" alt="${s.heimverein}" class="team-logo">`;
+}
+
         tr2.innerHTML = `
-            <td width="60%"><b><img src="/bilder/${logoh}" alt="logo"> ${s.heimverein}</b></td>
+            <td width="60%"><b>
+
+            ${heimLogoHtml}
+             ${s.heimverein}
+             </b>
+             </td>
+
             <td width="20%">Heim</td>
+
+
+
             <td width="20%">
 
                 <input type="number"
@@ -167,9 +179,20 @@ console.log(textd); // Ausgabe z.B.: "Samstag, 17.01.2026, 18:00 Uhr"
 
         // Zeile 3: Gastverein + Tipp
         const tr3 = document.createElement("tr");
-        const logog = s.gastverein+"_logo.png"
+        const logog = s.gastverein + "_logo.png";
+let gastLogoHtml;
+if (s.gastbild) {
+    gastLogoHtml = `<img src="${s.gastbild}" alt="${s.gastverein}" class="team-logo">`;
+} else {
+    gastLogoHtml = `<img src="/bilder/${logog}" alt="${s.gastverein}" class="team-logo">`;
+}
         tr3.innerHTML = `
-            <td width="60%"><b><img src="/bilder/${logog}" alt="logo"> ${s.gastverein}</b></td>
+            <td width="60%">
+            <b>
+                ${gastLogoHtml}
+                ${s.gastverein}
+            </b>
+             </td>
             <td width="20%">Gast</td>
             <td width="20%">
            

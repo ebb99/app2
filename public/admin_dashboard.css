@@ -1,9 +1,6 @@
 body {
   margin: 0;
   min-height: 100vh;
-
- 
-
 }
 
 /* Grid-Zuordnung */
@@ -21,9 +18,11 @@ header {
 main {
   grid-area: main;
   display: grid;
-  grid-template-columns:0.4fr 2.0fr 1.0fr 1.0fr ;
-  
+  /* grid-template-columns:minmax(100px, 1fr) 2.0fr 1.0fr 1.0fr ; */
+  grid-template-columns: 25% 40% 20% 12% 5%;
   gap: 0.5rem;
+
+  
   background: #eee;
     padding: 1rem;
 }
@@ -45,7 +44,15 @@ select {
   margin-bottom: 1rem;
   cursor: pointer;
 }  
-/* 
+
+#anstosszeitInput {
+  background: rgb(193, 202, 233);
+  border-style: solid;
+  font-size: 12px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
 #spalte1 {
   background: white;
   border-style: solid;
@@ -53,7 +60,8 @@ select {
   text-align: center;
   padding: 0.5rem;
 }
-  */
+ 
+  
 #spalte2 {
   background: white;
   border-style: solid;
