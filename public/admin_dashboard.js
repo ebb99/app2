@@ -157,7 +157,7 @@ async function ladeSpiele() {
             statuswort: "geplant"
         })
     });
-
+    alert("✅ Spiel gespeichert");
     ladeSpiele();
 }
 async function spielLoeschen() {

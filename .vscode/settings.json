@@ -8,35 +8,6 @@
             },
             "ssh": "Disabled",
             "previewLimit": 50,
-            "sshOptions": {
-                "port": 22
-            },
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "name": "app1 railway",
-            "connectString": "postgresql://postgres:DKxcEgypjlbVQthOKqyuxrCFveQHbFBE@yamabiko.proxy.rlwy.net:10551/railway"
-        },
-        {
-            "pgOptions": {
-                "ssl": {
-                    "rejectUnauthorized": true
-                }
-            },
-            "ssh": "Disabled",
-            "previewLimit": 50,
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "name": "app2 railway",
-            "connectString": "postgresql://postgres:gSOgEzikFRTLZRbAuKSYGhGfZrXRZiBC@interchange.proxy.rlwy.net:31690/railway"
-        },
-        {
-            "pgOptions": {
-                "ssl": {
-                    "rejectUnauthorized": false
-                }
-            },
-            "ssh": "Disabled",
-            "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
             "name": "app2_railway",
