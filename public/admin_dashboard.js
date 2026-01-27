@@ -83,7 +83,7 @@ async function vereinSpeichern() {
         method: "POST",
          body: JSON.stringify({ vereinsname: name, url: logo })
     });
-
+    alert("✅ Verein gespeichert");
     $("vereinInput").value = "";
     $("logoInput").value = "";
     ladeVereine();
