@@ -14,9 +14,9 @@ const express = require("express");
 const pg = require("pg");
 const path = require("path");
 const cron = require("node-cron");
-const session = require("express-session");
 const bcrypt = require("bcrypt");
-
+const cors = require("cors");
+const session = require("express-session");
 // ===============================
 // App
 // ===============================
@@ -34,12 +34,20 @@ const SPIELZEIT_MINUTEN = 1;
 const NACHSPIELZEIT_MINUTEN = 0;
 
 app.set("trust proxy", 1);
+
+
 // ===============================
 // Middleware
 // ===============================
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/bilder", express.static("bilder"));
+
+app.use(cors({
+    origin: 'http://localhost:8080', // Ersetze dies mit der URL deines Frontends
+    credentials: true, // <-- CRITICAL: Erlaubt das Senden/Empfangen von Cookies
+}));
+
 
 // app.use(session({
 //     secret: process.env.SESSION_SECRET || "super-geheim",
@@ -59,16 +67,22 @@ app.use(
     resave: false,
     saveUninitialized: false,
     proxy: true,
-    cookie: {
-      secure: true,        // Railway = HTTPS
-      httpOnly: true,
-      sameSite: "lax",     // wichtig für Login
-      maxAge: 1000 * 60 * 60 * 24,
-    },
+
+  cookie: {
+        secure: false, // <-- Für lokale Entwicklung auf HTTP
+        sameSite: 'lax' // oder 'strict'
+    }
+    
+    // cookie: {
+    //   secure: true,        // Railway = HTTPS
+    //   httpOnly: true,
+    //   sameSite: "lax",     // wichtig für Login
+    //   maxAge: 1000 * 60 * 60 * 24,
+    // },
   })
 );
 
-
+  
 
 
 
