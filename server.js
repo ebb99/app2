@@ -76,14 +76,14 @@ app.use(session({
     
 
 
-    // cookie: {
-    //   secure: true,        // Railway = HTTPS
-    //   httpOnly: true,
-    //   sameSite: "lax",     // wichtig für Login
-    //   maxAge: 1000 * 60 * 60 * 24,
-    // },
-  })
-);
+//     cookie: {
+//       secure: true,        // Railway = HTTPS
+//       httpOnly: true,
+//       sameSite: "lax",     // wichtig für Login
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 
   
 
@@ -625,6 +625,7 @@ app.delete("/api/users/:id", requireAdmin, async (req, res) => {
 
 
 
+const HOST = '0.0.0.0'; // Lausche auf allen verfügbaren Netzwerkschnittstellen
 
 
 // ===============================
