@@ -33,8 +33,7 @@ const PORT = process.env.PORT || 8080;
 const SPIELZEIT_MINUTEN = 1;
 const NACHSPIELZEIT_MINUTEN = 0;
 
-app.set("trust proxy", 1);
-
+// app.set("trust proxy", 1);
 
 // ===============================
 // Middleware
@@ -73,10 +72,7 @@ app.use(session({
 //         sameSite: 'lax' // oder 'strict'
 //     }
  
-    
-
-
-//     cookie: {
+    //     cookie: {
 //       secure: true,        // Railway = HTTPS
 //       httpOnly: true,
 //       sameSite: "lax",     // wichtig für Login
@@ -84,13 +80,6 @@ app.use(session({
 //     },
 //   })
 // );
-
-  
-
-
-
-
-
 
 // ===============================
 // Auth Middleware (NUR API)
