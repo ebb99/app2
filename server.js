@@ -40,16 +40,42 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use("/bilder", express.static("bilder"));
 
-app.use(session({
-    secret: process.env.SESSION_SECRET || "super-geheim",
+// app.use(session({
+//     secret: process.env.SESSION_SECRET || "super-geheim",
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         httpOnly: true,
+//         sameSite: "lax",
+//         maxAge: 1000 * 60 * 60 * 24
+//     }
+// }));
+
+app.use(
+  session({
+    name: "session",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
-        httpOnly: true,
-        sameSite: "lax",
-        maxAge: 1000 * 60 * 60 * 24
-    }
-}));
+      secure: true,        // Railway = HTTPS
+      httpOnly: true,
+      sameSite: "lax",     // wichtig für Login
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
+
+
+
+
+
+
+
+
+app.set("trust proxy", 1);
 
 // ===============================
 // Auth Middleware (NUR API)
