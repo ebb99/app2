@@ -21,10 +21,20 @@ if (!username || !password) {
 // ===============================
 // DB Verbindung
 // ===============================
+// const pool = new Pool({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: { rejectUnauthorized: false }
+// });
+
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+    // SSL nur aktivieren, wenn wir NICHT lokal sind
+    ssl: process.env.DATABASE_URL.includes("localhost") 
+         ? false 
+         : { rejectUnauthorized: false }
 });
+
+
 
 // ===============================
 // Admin setzen
