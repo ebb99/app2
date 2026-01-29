@@ -49,30 +49,33 @@ app.use(cors({
 }));
 
 
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || "super-geheim",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         httpOnly: true,
-//         sameSite: "lax",
-//         maxAge: 1000 * 60 * 60 * 24
-//     }
-// }));
-
-app.use(
-  session({
-    name: "session",
-    secret: process.env.SESSION_SECRET,
+app.use(session({
+    secret: process.env.SESSION_SECRET || "super-geheim",
     resave: false,
     saveUninitialized: false,
-    proxy: true,
-
-  cookie: {
-        secure: false, // <-- Für lokale Entwicklung auf HTTP
-        sameSite: 'lax' // oder 'strict'
+    cookie: {
+        httpOnly: true,
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24
     }
+}));
+
+// app.use(
+//   session({
+//     name: "session",
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     proxy: true,
+
+//   cookie: {
+//         secure: false, // <-- Für lokale Entwicklung auf HTTP
+//         sameSite: 'lax' // oder 'strict'
+//     }
+ 
     
+
+
     // cookie: {
     //   secure: true,        // Railway = HTTPS
     //   httpOnly: true,
