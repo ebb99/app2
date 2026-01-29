@@ -33,6 +33,7 @@ const PORT = process.env.PORT || 8080;
 const SPIELZEIT_MINUTEN = 1;
 const NACHSPIELZEIT_MINUTEN = 0;
 
+app.set("trust proxy", 1);
 // ===============================
 // Middleware
 // ===============================
@@ -73,9 +74,6 @@ app.use(
 
 
 
-
-
-app.set("trust proxy", 1);
 
 // ===============================
 // Auth Middleware (NUR API)
